@@ -4,14 +4,19 @@ on :
   - workflow_dispatch
 
 jobs: 
-  my_first_job:
+  echo-hello:
     runs-on: ubuntu-latest
     steps:
       - name: "Say hello"
         run : echo "Hello World"
         
-  my_second_job:
+  echo-goodbye:
     runs-on: ubuntu-latest
     steps:
+      - name : "Failed step"
+        run : |                 # multiline script - use "" | ""
+          echo "I will fail"
+          exit 1
+
       - name: "Say goodbye"
         run : echo "Bye World"
