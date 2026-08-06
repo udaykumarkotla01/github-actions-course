@@ -1,0 +1,17 @@
+name : "Practical exercise 1"
+on : 
+  - push
+  - workflow_dispatch
+
+jobs: 
+  my_first_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Say hello"
+        run : echo "Hello World"
+        
+  my_second_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Say goodbye"
+        run : echo "Bye World"
