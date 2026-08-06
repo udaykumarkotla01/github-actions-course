@@ -8,6 +8,7 @@
 
 Example:
 
+```yaml
 name: Example YAML
 num: 1
 is_valid: true
@@ -30,6 +31,7 @@ array2:
       - label2
   - name: element2
     num: 20
+```
 
 
 
@@ -51,3 +53,15 @@ Example idea:
 - Job: defined inside a workflow and runs in a specific execution environment; it can include one or more steps. Run parllel by default.
 - Steps: defined inside a job and are the actual commands or actions GitHub Actions executes. Steps Run sequential by default.
 
+
+
+# To execute a multi-line bash script, you can use the following syntax:
+
+```yaml
+steps:
+  - name: Multi-line bash
+    run: |
+      echo "I am"
+      echo "a multi-line"
+      echo "script."
+``` 
