@@ -3,6 +3,10 @@ on: push
 jobs: 
     build:
         runs-on: ubuntu-latest
+
+        defaults:
+            run:
+                working-directory: 04-using-actions/my-app
         # checkout code from repository
         # install deps of the project
         # run automated tests
@@ -17,8 +21,8 @@ jobs:
     
             -   name: Install dependencies
                 run: npm ci
-                working-directory: 04-using-actions/my-app
+                # working-directory: 04-using-actions/my-app
 
             -   name: Run tests
                 run: npm test
-                working-directory: 04-using-actions/my-app
+                # working-directory: 04-using-actions/my-app
