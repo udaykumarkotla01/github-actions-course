@@ -65,3 +65,11 @@ steps:
       echo "a multi-line"
       echo "script."
 ``` 
+
+
+# Workflow Runners
+
+Runners are virtual machines or environments that execute the jobs in a workflow.
+
+- GitHub-hosted runners: managed by GitHub and include operating systems like Windows, Ubuntu, and macOS. GitHub handles updates, security patches, and infrastructure. Each job runs on its own virtual machine, and jobs are independent by default.
+- Self-hosted runners: run on your own machine or server, giving you more control over the environment and infrastructure.
