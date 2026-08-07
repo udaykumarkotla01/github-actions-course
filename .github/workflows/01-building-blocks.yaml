@@ -1,6 +1,5 @@
 name : "01 - Building blocks"
-on:
-  workflow_dispatch
+on: workflow_dispatch
 
 jobs: 
   echo-hello:
