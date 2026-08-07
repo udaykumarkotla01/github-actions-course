@@ -1,4 +1,4 @@
-name : "Practical exercise 1"
+name : "01 - Building blocks"
 on:
   workflow_dispatch
 
