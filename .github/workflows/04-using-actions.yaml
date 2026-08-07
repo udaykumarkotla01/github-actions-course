@@ -7,6 +7,7 @@ jobs:
         defaults:
             run:
                 working-directory: 04-using-actions/my-app
+                
         # checkout code from repository
         # install deps of the project
         # run automated tests

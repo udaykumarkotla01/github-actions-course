@@ -76,7 +76,10 @@ Runners are virtual machines or environments that execute the jobs in a workflow
 
 # Actions
 
-Actions are reusable applications that perform common or repetitive tasks in a workflow.
+Actions are reusable applications that help perform common or repetitive tasks in a workflow.
+
+- They help avoid long and repeated commands.
+- They are often used for setup tasks, dependency installation, or running scripts.
 
 ```yaml
 steps:
@@ -85,3 +88,39 @@ steps:
       input: value
   - run: echo "Hello"
 ```
+
+You can find popular actions in the GitHub Actions Marketplace: https://github.com/marketplace?type=actions
+
+
+# Event filters
+
+Event filters specify the conditions under which a workflow should run.
+
+Example:
+
+```yaml
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - docs/**
+  pull_request:
+```
+
+This means the workflow runs when code is pushed to the main branch, except when changes are only in the docs folder, or when a pull request is opened.
+
+
+# Activity types
+
+Activity types define what GitHub events should trigger the workflow.
+
+Example:
+
+```yaml
+on:
+  issues:
+    types: [opened, closed]
+```
+
+This means the workflow runs when an issue is opened or closed.
