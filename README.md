@@ -1,4 +1,4 @@
-[edited ]# YAML file notes
+[edited 22s]# YAML file notes
 
 - YAML stands for YAML Ain't Markup Language.
 - It is used to store data in a simple and human-readable format.
