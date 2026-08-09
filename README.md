@@ -119,8 +119,14 @@ Example:
 
 ```yaml
 on:
-  issues:
+  pull_request:
     types: [opened, closed]
 ```
 
 This means the workflow runs when an issue is opened or closed.
+
+
+# Workflow Contexts
+Access information about jobs , variables , runs etc...
+
+syntax : ${{ <context> }}
