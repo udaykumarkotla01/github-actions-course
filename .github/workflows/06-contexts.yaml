@@ -12,12 +12,14 @@ on:
 env : 
     MY_WORKFLOW_VAR: 'workflow'
     MY_OVERRIDE_VAR: 'workflow'
+
 jobs:
   echo-data:
     runs-on: ubuntu-latest
 
     env:
       MY_OVERRIDE_VAR: 'job'
+      CHANGE_SECRET_NAME: ${{ vars.OVERRIDDEN_SECRET_NAME || 'Not Available' }}
     
     environment: prod
 
@@ -49,12 +51,13 @@ jobs:
       - name: Repository env variable from prod
         run: |
           echo "ENV Variable from GitHub settings: ${{ vars.SECRET_NAME }}"
+          echo "ENV Variable overriden from step env: ${{ vars.OVERRIDDEN_SECRET_NAME }}"
 
       - name: Overrideen repository env variable prod
         env:
-          OVERRIDDEN_SECRET_NAME: 'step'
+            CHANGE_SECRET_NAME: 'Sita Rama'
         run: |
           echo "ENV Variable from GitHub settings: ${{ vars.SECRET_NAME }}"
-          echo "ENV Variable overriden from step env: ${{ vars.OVERRIDDEN_SECRET_NAME }}"
+          echo "ENV Variable overriden from step env: ${{ env.CHANGE_SECRET_NAME }}"
 
     
