@@ -3,7 +3,6 @@ name : 07 - Using Expressions
 run-name : 07 - Using Expressions | Expression DEBUG - ${{ inputs.debug }}
 
 on: 
-    push:
     workflow_dispatch:
         inputs:
             debug:
@@ -25,7 +24,7 @@ jobs:
                 echo "Branch: ${{ github.ref }}"
                 echo "Commit SHA: ${{ github.sha }}"
                 echo "Runner OS: ${{ runner.os }}"
-                
+
             - name: "print non-debug information"
               if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug == false }}
               run: |
