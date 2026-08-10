@@ -18,6 +18,8 @@ jobs:
 
     env:
       MY_OVERRIDE_VAR: 'job'
+    
+    environment: prod
 
     steps:
       - name: Display Information
@@ -44,11 +46,11 @@ jobs:
             echo "Variable from job env: $MY_OVERRIDE_VAR"
             echo "Variable from step env: ${{ env.MY_OVERRIDE_VAR }}"
 
-      - name: Repository env variable
+      - name: Repository env variable from prod
         run: |
           echo "ENV Variable from GitHub settings: ${{ vars.SECRET_NAME }}"
 
-      - name: Overrideen repository env variable
+      - name: Overrideen repository env variable prod
         env:
           OVERRIDDEN_SECRET_NAME: 'step'
         run: |
