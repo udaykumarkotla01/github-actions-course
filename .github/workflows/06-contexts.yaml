@@ -43,3 +43,16 @@ jobs:
             echo "Variable from workflow env: $MY_WORKFLOW_VAR"
             echo "Variable from job env: $MY_OVERRIDE_VAR"
             echo "Variable from step env: ${{ env.MY_OVERRIDE_VAR }}"
+
+      - name: Repository env variable
+        run: |
+          echo "ENV Variable from GitHub settings: ${{ vars.SECRET_NAME }}"
+
+      - name: Overrideen repository env variable
+        env:
+          OVERRIDDEN_SECRET_NAME: 'step'
+        run: |
+          echo "ENV Variable from GitHub settings: ${{ vars.SECRET_NAME }}"
+          echo "ENV Variable overriden from step env: ${{ vars.OVERRIDDEN_SECRET_NAME }}"
+
+    
