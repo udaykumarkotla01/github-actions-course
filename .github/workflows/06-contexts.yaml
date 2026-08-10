@@ -10,20 +10,37 @@ on:
             type: boolean
             default: false
 
+env : 
+    MY_WORKFLOW_VAR: 'workflow'
+    MY_OVERRIDE_VAR: 'workflow'
 jobs:
   echo-data:
     runs-on: ubuntu-latest
+
+    env:
+      MY_OVERRIDE_VAR: 'job'
+
     steps:
       - name: Display Information
         run: |
-          echo "Event name: ${{ github.event_name }}"
-          echo "Ref: ${{ github.ref }}"
-          echo "SHA: ${{ github.sha }}"
-          echo "Actor: ${{ github.actor }}"
-          echo "Workflow: ${{ github.workflow }}"
-          echo "Run ID: ${{ github.run_id }}"
-          echo "Run number: ${{ github.run_number }}"
+            echo "Event name: ${{ github.event_name }}"
+            echo "Ref: ${{ github.ref }}"
+            echo "SHA: ${{ github.sha }}"
+            echo "Actor: ${{ github.actor }}"
+            echo "Workflow: ${{ github.workflow }}"
+            echo "Run ID: ${{ github.run_id }}"
+            echo "Run number: ${{ github.run_number }}"
+            echo "********** Job overridden *************"
+            echo "Variable from workflow env: $MY_WORKFLOW_VAR"
+            echo "Variable from job env: $MY_OVERRIDE_VAR"
+            echo "Variable from step env: ${{ env.MY_OVERRIDE_VAR }}"
 
       - name: Retrieve Variable
+        env:
+          MY_OVERRIDE_VAR: 'step'
         run: |
-          echo "Variable from GitHub settings: ${{ vars.MY_VAR }}"
+            echo "Variable from GitHub settings: ${{ vars.MY_VAR }}"
+            echo "********** Step overridden *************"
+            echo "Variable from workflow env: $MY_WORKFLOW_VAR"
+            echo "Variable from job env: $MY_OVERRIDE_VAR"
+            echo "Variable from step env: ${{ env.MY_OVERRIDE_VAR }}"
