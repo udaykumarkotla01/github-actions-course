@@ -130,3 +130,36 @@ This means the workflow runs when an issue is opened or closed.
 Access information about jobs , variables , runs etc...
 
 syntax : ${{ <context> }}
+
+
+# Expressions and variables
+
+- `if` condition
+- Syntax:
+
+```yaml
+if: github.event_name == 'workflow_dispatch' && inputs.debug == true
+run: |
+  echo "Triggered by: ${{ github.event_name }}"
+```
+
+- Environment variables
+- Syntax:
+
+```yaml
+env:
+  MY_OVERRIDE_VAR: 'step'
+
+steps:
+  - name: Use step env variable
+    run: echo "Variable from step env: ${{ env.MY_OVERRIDE_VAR }}"
+```
+
+- Variables from repository level
+- Syntax:
+
+```yaml
+steps:
+  - name: Repository env variable from prod
+    run: echo "ENV Variable from GitHub settings: ${{ vars.SECRET_NAME }}"
+```
