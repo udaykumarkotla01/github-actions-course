@@ -163,3 +163,28 @@ steps:
   - name: Repository env variable from prod
     run: echo "ENV Variable from GitHub settings: ${{ vars.SECRET_NAME }}"
 ```
+
+# Functions
+
+Functions let you use built-in logic inside GitHub Actions expressions. They are written inside `${{ ... }}` and help you check values, format text, or inspect the result of previous steps.
+
+Examples:
+
+```yaml
+if: startsWith(github.ref, 'refs/heads/main')
+run: echo "This is the main branch"
+```
+
+```yaml
+if: contains(github.event.head_commit.message, 'hotfix')
+run: echo "Hotfix commit detected"
+```
+
+```yaml
+if: ${{ success() }}
+run: echo "Previous steps succeeded"
+```
+
+Common examples:
+- General-purpose functions: `startsWith`, `contains`, `format`, `join`, `endsWith`, `split`, `toJson`, `fromJson`, `hashFiles`
+- Status check functions: `success()`, `failure()`, `cancelled()`, `always()`
