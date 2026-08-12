@@ -188,3 +188,70 @@ run: echo "Previous steps succeeded"
 Common examples:
 - General-purpose functions: `startsWith`, `contains`, `format`, `join`, `endsWith`, `split`, `toJson`, `fromJson`, `hashFiles`
 - Status check functions: `success()`, `failure()`, `cancelled()`, `always()`
+
+
+# Controlling the execution flow
+
+GitHub Actions lets you control how steps and jobs run in a workflow.
+
+- Standard execution: steps run one after another in the order they are written.
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Step 1"
+      - run: echo "Step 2"
+```
+
+This runs `Step 1` first, then `Step 2`.
+
+- Conditional execution: use `if` to run a step or job only when a condition is true.
+
+```yaml
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy only on main
+        if: github.ref == 'refs/heads/main'
+        run: echo "Deploying to production"
+```
+
+This step runs only when the workflow is triggered from the `main` branch.
+
+- Non-dependent execution: jobs without `needs` can run in parallel.
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build"
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Test"
+```
+
+Here, `build` and `test` can run at the same time.
+
+- Dependent execution: use the `needs` key so one job waits for another job to finish.
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Build"
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Test"
+```
+
+Here, `test` starts only after `build` succeeds.
