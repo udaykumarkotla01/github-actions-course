@@ -269,3 +269,60 @@ jobs:
 ```
 
 Here, the workflow continues to the next step even though `exit 1` failed.
+
+# inputs - Providing information to customized workflows and actions
+
+Inputs allow you to pass configurable values into workflows and reusable actions. There are two common places to define inputs:
+
+- Workflow dispatch inputs (for manual runs)
+- Action inputs (defined in action metadata and passed when calling an action)
+
+Examples:
+
+1) Workflow dispatch inputs (trigger via GitHub UI or API):
+
+```yaml
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'staging'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show input
+        run: echo "Deploying to ${{ github.event.inputs.environment }}"
+```
+
+2) Action inputs (action.yml / action.yaml defines inputs; consuming workflow passes values):
+
+action.yml (inside action repository):
+```yaml
+name: 'my-action'
+inputs:
+  image-tag:
+    description: 'Image tag to use'
+    required: true
+    default: 'latest'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+```
+
+workflow calling the action:
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./path-to-my-action
+        with:
+          image-tag: 'v1.2.3'
+```
+
+In the action, inputs are available via environment variables (e.g., $INPUT_IMAGE_TAG) or the specific runner context depending on the action type.
