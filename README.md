@@ -255,3 +255,17 @@ jobs:
 ```
 
 Here, `test` starts only after `build` succeeds.
+
+- `continue-on-error`: allows a step to fail without stopping the job. The job continues to the next step.
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 1
+        continue-on-error: true
+      - run: echo "This runs even though previous step failed"
+```
+
+Here, the workflow continues to the next step even though `exit 1` failed.
