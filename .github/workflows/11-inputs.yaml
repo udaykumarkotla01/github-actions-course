@@ -30,7 +30,7 @@ jobs:
 
     deploy:
         needs: build
-        if: ${{ inputs['dry-run'] == 'false' }}
+        if: ${{ !inputs.dry-run }}
         runs-on: ubuntu-latest
         environment: ${{ inputs.target }}
         steps:
