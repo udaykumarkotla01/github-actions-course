@@ -1,4 +1,23 @@
-#[YAML file Notes]
+# GitHub Actions Course
+
+Welcome to the GitHub Actions Course! This repository contains comprehensive notes and examples on mastering GitHub Actions for CI/CD automation.
+
+## 📚 Table of Contents
+- YAML File Notes
+- Workflow Jobs and Steps
+- Workflow Runners
+- Actions
+- Event Filters
+- Activity Types
+- Workflow Contexts
+- Expressions and Variables
+- Functions
+- Controlling Execution Flow
+- Inputs
+
+---
+
+# [YAML file Notes]
 
 - YAML stands for YAML Ain't Markup Language.
 - It is used to store data in a simple and human-readable format.
